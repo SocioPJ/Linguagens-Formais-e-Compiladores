@@ -1,9 +1,6 @@
 data_file = input("Digite o nome do arquivo: ")
-n = int(input("Numero de elementos do vetor : "))
- 
-cadeia = list(map(int,input("\nNúmeros do vetor: ").strip().split()))[:n]
- 
-print("\nList is - ", cadeia)
+cadeia = input('Digite a cadeia: ')
+print("\nCadeia: ", cadeia)
 
 with open (str(data_file)) as dfa_file:
     dfa_data = dfa_file.read()
@@ -14,16 +11,18 @@ delta = str(dfa['delta'])
 Sigma = str(dfa['sigma'])
 F = str(dfa['final_states'])
 print('Estados: '+ str(dfa['states']))
-print('\nSigma: ' + str(dfa['sigma']))    
-print('\nEstado Inicial: ' + str(dfa['initial_state']))  
-print('\nDelta: ' + str(dfa['delta'])) 
-print('\nEstado final: ' + str(dfa['final_states']))
+print('Sigma: ' + str(dfa['sigma']))    
+print('Estado Inicial: ' + str(dfa['initial_state']))  
+print('Delta: ' + str(dfa['delta'])) 
+print('Estado final: ' + str(dfa['final_states']))
+
 
 
 def simular_dfa(dfa,entrada):
+    entrada = []
     estado = dfa['initial_state']
     aceitar = False
-    while entrada.length > 0:
+    while len(entrada) > 0:
         simbolo = entrada.pop(0)
         if simbolo not in dfa['sigma']:
             print('Simbolo nao pertence ao alfabeto do automato')
@@ -31,16 +30,26 @@ def simular_dfa(dfa,entrada):
         if estado not in dfa['states']:
             print('Estado nao pertence ao conjunto de estados do automato')
             break
-        proximo_estado = dfa['delta'][estado][dfa['sigma'].index(simbolo)]
+        proximo_estado = dfa['delta'][estado][dfa['sigma'].index(str(simbolo))]
         estado = proximo_estado
-        if
+        
+        if dfa['delta'][estado]not in dfa['delta']:
+            print('Nao foi possivel realizar transicao entre os estados')
+            break
+        break
+    if estado in dfa['final_states'] and len(entrada) == 0:
+        aceitar = True
 
-if __name__ == '__main__':
-    reconhecer('babbbbabbaaaa') # aceita: >3 a's
-    reconhecer('babbbb') # rejeita: < 3 a's
-    reconhecer('baabbbba') # aceita: = 3 a's
-    reconhecer('baaxbbba') # rejeita: x
+    if aceitar == True:
+        print('A cadeia foi aceita pelo automato')
+    else:
+        print('A cadeia nao foi aceita pelo automato')
 
 
+simular_dfa(dfa,cadeia)
+    
 
+
+# pedir ao usuario para digitar a cadeia
+#cadeia = input("Digite a cadeia: ")
 
