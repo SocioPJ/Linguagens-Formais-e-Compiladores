@@ -18,14 +18,14 @@ def simular_dfa(dfa,entrada):
         except KeyError:
             print('Não foi possivel realizar a transição entre estados')
 
-    if estado in dfa['final_states']:
+    if estado in dfa['final_states'] and simbolo in dfa['sigma'] and estado in dfa['states']:
         aceitar = True
     if aceitar == True:
-        print('\nA cadeia foi aceita pelo automato')
+        print('\nA cadeia foi aceita ')
         print('========================================================================================')
     else:
-        print('\nA cadeia nao foi aceita pelo automato')
-        print('========================================================================================')
+        print('\nA cadeia nao foi aceita ')
+        print('\n========================================================================================')
 
 
 #=====================================================================================================================
@@ -40,12 +40,17 @@ if reposta1 == 'N':
     cadeia = list(cadeia)
     print("\nCadeia: ", cadeia)
     simular_dfa(dfa,cadeia)
+    print('Programa finalizado')
 elif reposta1 == 'S':
-    reposta2 = int(input('Digite o número de cadeias: '))
+    reposta2 = int(input('\nDigite o número de cadeias: '))
     for i in range(reposta2):
         cadeia = input('Digite a cadeia: ')
         cadeia = list(cadeia)
         simular_dfa(dfa,cadeia)
+        if i == reposta2-1:
+            print('\nPrograma finalizado')
+            print('\n========================================================================================')
+
 else:
     print('========================================================================================')
     print('\nResposta inválida')
