@@ -18,30 +18,22 @@ print('\nSigma: ' + str(dfa['sigma']))
 print('\nEstado Inicial: ' + str(dfa['initial_state']))  
 print('\nDelta: ' + str(dfa['delta'])) 
 print('\nEstado final: ' + str(dfa['final_states']))
-reconhecer(cadeia)  
 
-def reconhecer(cadeia):
-    estado = str(dfa['initial_state'])
-    fim_cadeia = False
-    i = 0   
-    try:
-        while not fim_cadeia:
-            if i == len(cadeia):
-                fim_cadeia = True
-            else:
-                simbolo =  cadeia[i]
-                proximo_estado = \
-                    delta[estado][Sigma.index(simbolo)]
-                estado = proximo_estado
-            i = i + 1
-        if estado in F:
-            print('A cadeia ', cadeia, ' foi reconhecida')
-        else:
-            print('A cadeia ', cadeia, ' foi rejeitada')
-    except ValueError: 
-        print('A cadeia ', cadeia, ' foi rejeitada')
-    except Exception as e:
-        print('Erro executando o autômato: ', e)
+
+def simular_dfa(dfa,entrada):
+    estado = dfa['initial_state']
+    aceitar = False
+    while entrada.length > 0:
+        simbolo = entrada.pop(0)
+        if simbolo not in dfa['sigma']:
+            print('Simbolo nao pertence ao alfabeto do automato')
+            break
+        if estado not in dfa['states']:
+            print('Estado nao pertence ao conjunto de estados do automato')
+            break
+        proximo_estado = dfa['delta'][estado][dfa['sigma'].index(simbolo)]
+        estado = proximo_estado
+        if
 
 if __name__ == '__main__':
     reconhecer('babbbbabbaaaa') # aceita: >3 a's
