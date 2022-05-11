@@ -46,6 +46,11 @@ elif reposta1 == 'S':
         cadeia = input('Digite a cadeia: ')
         cadeia = list(cadeia)
         simular_dfa(dfa,cadeia)
+else:
+    print('========================================================================================')
+    print('\nResposta inválida')
+    print('O programa será encerrado')
+    print('\n========================================================================================')
 
 
 
