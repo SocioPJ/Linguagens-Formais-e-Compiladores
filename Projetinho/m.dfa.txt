@@ -1,6 +1,6 @@
 {
 'states' : set([0,1,2,3]),
-'initial_state' : 0,
+'initial_state' : 6,
 'sigma' : set(['0','1']),
 'delta' : { (0,'0'):0, (0,'1'):1,
             (1,'0'):3, (1,'1'):2,
