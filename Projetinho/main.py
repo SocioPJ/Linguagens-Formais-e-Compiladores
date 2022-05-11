@@ -13,7 +13,7 @@ def simular_dfa(dfa,entrada):
             break
         try:
             proximo_estado = dfa['delta'][(estado,simbolo)]
-            print('Estado: ' + str(estado) + ' Simbolo: ' + str(simbolo) + ' Proximo estado: ' + str(proximo_estado))
+            print('('+str(estado)+' , '+ str(simbolo) +') -> '+ str(proximo_estado))
             estado = proximo_estado
         except KeyError:
             print('Não foi possivel realizar a transição entre estados')
@@ -21,32 +21,41 @@ def simular_dfa(dfa,entrada):
     if estado in dfa['final_states']:
         aceitar = True
     if aceitar == True:
-        print('A cadeia foi aceita pelo automato')
+        print('\nA cadeia foi aceita pelo automato')
+        print('========================================================================================')
     else:
         print('\nA cadeia nao foi aceita pelo automato')
+        print('========================================================================================')
 
 
+#=====================================================================================================================
 data_file = input("Digite o nome do arquivo: ")
-cadeia = input('Digite a cadeia: ')
-cadeia = list(cadeia)
-
-print("\nCadeia: ", cadeia)
-
 with open (str(data_file)) as dfa_file:
     dfa_data = dfa_file.read()
 dfa = eval(dfa_data)
 
+reposta1 = input('\nVocê irá usar mais de uma cadeia? (S/N): ')
+if reposta1 == 'N':
+    cadeia = input('Digite a cadeia: ')
+    cadeia = list(cadeia)
+    print("\nCadeia: ", cadeia)
+    simular_dfa(dfa,cadeia)
+elif reposta1 == 'S':
+    reposta2 = int(input('Digite o número de cadeias: '))
+    for i in range(reposta2):
+        cadeia = input('Digite a cadeia: ')
+        cadeia = list(cadeia)
+        simular_dfa(dfa,cadeia)
 
-print('========================================================================================')
 
 
 
 
 
-simular_dfa(dfa,cadeia)
-    
 
 
-# pedir ao usuario para digitar a cadeia
-#cadeia = input("Digite a cadeia: ")
+
+
+
+
 
